@@ -66,23 +66,21 @@ export default function App() {
     <>
       <SearchBar onSubmit={handleQuery} />
       {error && <ErrorMessage />}
-
       {images.length > 0 && (
         <ImageGallery listImages={images} openModal={openModal} />
       )}
-
       {isLoading && <Loader />}
-
       {images.length > 0 && !isLoading && (
         <LoadMoreBtn onClick={handleLoadMore} />
       )}
-
-      <ImageModal
-        isOpen={modalIsOpen}
-        modalImg={selectedImage}
-        alt={description}
-        closeModal={closeModal}
-      />
+      {selectedImage && description && (
+        <ImageModal
+          isOpen={modalIsOpen}
+          modalImg={selectedImage}
+          alt={description}
+          closeModal={closeModal}
+        />
+      )}
 
       <Toaster />
     </>
