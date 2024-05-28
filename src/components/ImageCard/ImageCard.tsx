@@ -1,6 +1,20 @@
 import css from "./ImageCard.module.css";
 
-export default function ImageCard({ image: { urls, description }, onClick }) {
+interface ImageCardProps {
+  image: {
+    urls: {
+      small: string;
+      regular: string;
+    };
+    description: string;
+  };
+  onClick: (bigImg: string, alt: string) => void;
+}
+
+export default function ImageCard({
+  image: { urls, description },
+  onClick,
+}: ImageCardProps) {
   return (
     <div className={css.img}>
       <img
