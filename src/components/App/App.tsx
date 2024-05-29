@@ -7,7 +7,7 @@ import ImageModal from "../ImageModal/ImageModal";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Loader from "../Loader/Loader";
-import { Image, SearchResult } from "../../types";
+import { Image } from "../../types";
 
 export default function App() {
   const [images, setImages] = useState<Image[]>([]);
@@ -16,8 +16,8 @@ export default function App() {
   const [page, setPage] = useState<number>(1);
   const [query, setQuery] = useState<string>("");
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [description, setDescription] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
 
   const openModal = (bigImg: string, alt: string): void => {
     setSelectedImage(bigImg);
@@ -26,8 +26,8 @@ export default function App() {
   };
 
   const closeModal = (): void => {
-    setSelectedImage(null);
-    setDescription(null);
+    setSelectedImage("");
+    setDescription("");
     setModalIsOpen(false);
   };
 
@@ -74,22 +74,12 @@ export default function App() {
         <LoadMoreBtn onClick={handleLoadMore} />
       )}
 
-      {(selectedImage && (
-        <ImageModal
-          isOpen={modalIsOpen}
-          modalImg={selectedImage}
-          alt={description}
-          closeModal={closeModal}
-        />
-      )) ||
-        (description && (
-          <ImageModal
-            isOpen={modalIsOpen}
-            modalImg={selectedImage}
-            alt={description}
-            closeModal={closeModal}
-          />
-        ))}
+      <ImageModal
+        isOpen={modalIsOpen}
+        modalImg={selectedImage}
+        alt={description}
+        closeModal={closeModal}
+      />
 
       <Toaster />
     </>
