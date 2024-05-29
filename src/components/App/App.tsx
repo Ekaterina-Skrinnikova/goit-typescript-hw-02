@@ -73,14 +73,23 @@ export default function App() {
       {images.length > 0 && !isLoading && (
         <LoadMoreBtn onClick={handleLoadMore} />
       )}
-      {selectedImage && description && (
+
+      {(selectedImage && (
         <ImageModal
           isOpen={modalIsOpen}
           modalImg={selectedImage}
           alt={description}
           closeModal={closeModal}
         />
-      )}
+      )) ||
+        (description && (
+          <ImageModal
+            isOpen={modalIsOpen}
+            modalImg={selectedImage}
+            alt={description}
+            closeModal={closeModal}
+          />
+        ))}
 
       <Toaster />
     </>
