@@ -7,7 +7,7 @@ import ImageModal from "../ImageModal/ImageModal";
 import LoadMoreBtn from "../LoadMoreBtn/LoadMoreBtn";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Loader from "../Loader/Loader";
-import { Image } from "../../types";
+import { Image, SearchResult } from "../../types";
 
 export default function App() {
   const [images, setImages] = useState<Image[]>([]);

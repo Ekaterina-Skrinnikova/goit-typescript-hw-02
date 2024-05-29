@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Image } from "./types";
+import { Image, SearchResult } from "./types";
 
 const apiKey = "BQVJndHzZSkNiJz6FpW26zHsUOHK2_4OaZ4YwXUA27k";
 
@@ -9,17 +9,11 @@ axios.interceptors.request.use((config) => {
   return config;
 });
 
-interface SearchResult {
-  results: Image[];
-  total: number;
-  total_pages: number;
-}
-
 export const fetchImages = async (
   searchQuery: string,
   page: number
-): Promise<SearchResult> => {
-  const response = await axios.get("/search/photos", {
+): Promise<Image[]> => {
+  const response = await axios.get<SearchResult>("/search/photos", {
     params: {
       query: searchQuery,
       per_page: 8,
